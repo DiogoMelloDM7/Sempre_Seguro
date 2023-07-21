@@ -1,0 +1,11 @@
+.div-color:hover{
+    background-color: #285e61;
+}
+
+.div-color > a:hover{
+    color: black;
+}
+
+.div-color{
+    border-radius: 5px;
+}

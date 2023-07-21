@@ -1,0 +1,46 @@
+{% load static %}
+
+<nav class="w-full flex justify-between px-3 bg-teal-900 ">
+    <div class="w-4/12 ">
+        <div class="container bg-teal-900 py-4 px-3 my-1 mx-24 ">
+            <a href="/" class="text-white no-underline flex justify-start">
+                <img src="{% static 'images/sempreseguro.png' %}" style="width: 100px; height: 100px;" >
+                <h1 class="text-white pt-8 pl-4 " style="font-family: Lucida Console; font-size: 1.5rem;">Sempre Seguro</h1>
+            </a>
+        </div>
+    </div>
+
+    <div class="w-8/12 flex flex-nowrap justify-end mx-16">
+
+
+            <a href="{% url 'conta:futurascompras' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Compras Futuras</button>
+            </a>
+
+
+            <a href="{% url 'conta:relatorios' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Relatórios</button>
+            </a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'conta:editarperfil' request.user.id %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Editar Perfil</button>
+            </a>
+
+
+            <a href="{% url 'conta:logout' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Sair</button>
+            </a>
+            {% else %}
+            <a href="{% url 'conta:criarconta' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Criar Conta</button>
+            </a>
+
+
+            <a href="{% url 'conta:login' %}?next={{ request.path }}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Login</button>
+            </a>
+            {% endif %}
+
+    </div>
+</nav>

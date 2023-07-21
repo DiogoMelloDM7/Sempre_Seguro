@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block titulo %}
+Futuras Compras
+{% endblock %}
+
+{% block content %}
+    <div class="bg-teal-100">
+        <div class="px-64 py-16 mx-64 bg-teal-200">
+            <h1 class="pb-16" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Nesta seção você pode cadastrar produtos que deseja adquirir futuramente, para isso preencha os campos abaixo... </h1>
+            <form method="post" style="width: 350px;">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mt-8" style="width:300px;">Adicionar
+                </button>
+            </form>
+        </div>
+        <div style="height: 2px; background-color: black;" class="mx-64">
+        </div>
+        <div class="px-64 py-16 mx-64 bg-teal-200">
+            <h1 style="font-size:1.8rem; font-weight: 700; color:#2F4F4F;">Confira abaixo suas futuras aquisições</h1>
+            <h3 style="font-size:1.2rem; font-weight: 500; color:#2F4F4F;">Para acessar o item caso tenha cadastrado um link, basta clicar em sua descrição...</h3>
+                {% if request.user.futurascompras.all|length > 0 %}
+                {% for produto in request.user.futurascompras.all %}
+
+                <div class="bg-gray-100 p-2 mt-16 flex justify-between rounded-lg" style="width: 600px;">
+                    {% if produto.url %}
+                    <a href="{{ produto.url }}" target="_blank" style="font-size: 1.4rem; font-weight: 700;">
+                        {% else %}
+                        <a href="#" style="font-size: 1.4rem; font-weight: 700;">
+                            {% endif %}
+                            <p>{{ produto }}</p>
+                            <p>R$ {{ produto.valor }}</p>
+                        </a>
+
+                        <div class="">
+                        <button class="bg-red-600 hover:bg-red-300 text-white font-bold py-2 px-4 border border-red-900 rounded my-3" onclick="excluirItem('{{ produto.id }}')">Remover
+                        </button>
+                        </div>
+
+                    </div>
+                {% endfor %}
+                {% else %}
+                <div>
+                    <h1 class="pt-8" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Parece que você não possui nenhum produto cadastrado, preencha o formulário acima para cadastrar suas próximas compras...</h1>
+                </div>
+                {% endif %}
+
+        </div>
+
+    </div>
+{% endblock %}

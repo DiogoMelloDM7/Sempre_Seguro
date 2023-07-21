@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}
+Homepage
+{% endblock %}
+
+{% block content %}
+<div class="bg-teal-100">
+    <div class="bg-teal-200 mx-32 ">
+        <div class="flex justify-between " style= "height: 700px; ">
+            <div class="px-8 py-8">
+                <h1 style="font-size: 2rem;">Cansado de sempre passar aperto no final do mês?</h1><br>
+                <h2 style="font-size: 1.7rem;">Seus problemas <span style="font-weight: 700;">ACABARAM!!!</span></h2><br>
+                <h3 style="font-size: 1.4rem;">Conheça o Sempre Seguro...</h3><br>
+                <h4 style="font-size: 1.2rem;">Aqui você pode controlar suas finanças sem dores de cabeça.</h4><br>
+                <h4 style="font-size: 1.2rem;">Veja seus relatórios de gastos dos outros meses.</h4><br>
+                <h4 style="font-size: 1.2rem;">Com vontade de fazer aquela nova aquisição, mas o dinheiro não sobra?<span style="font-weight: 700;"> SEM PROBLEMAS</span>  nós te ajudamos a economizar para isso.</h4><br>
+                <h1 style="font-size: 1.2rem; margin-bottom: 50px;">Para desfrutar dessas funcionalidades, basta apenas se cadastrar ou fazer login utilizando as opções abaixo...</h1>
+                <a href="{% url 'conta:criarconta' %}" style="margin-right: 50px; ">
+                    <button class="btn btn-outline-success bg-green-400" style="width: 200px;">Criar Conta</button>
+                </a>
+                <a href="{% url 'conta:login' %}">
+                    <button class="btn btn-outline-success bg-green-400" style="width: 200px;">Login</button>
+                </a>
+
+            </div>
+
+            <img src="{% static 'images/fundo.jpg' %}" style="height: 700px;" class="ml-4">
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

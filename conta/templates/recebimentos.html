@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block titulo %}
+Recebimentos
+{% endblock %}
+
+{% block content %}
+
+    <div class="bg-teal-100">
+        <div class="bg-teal-200 px-28 py-24 mx-64">
+            <h1 class="px-64" style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05;">
+                Nesta seção <strong>{{ request.user }}</strong>, insira seus recebimentos preenchendo os campos abaixo...
+            </h1>
+
+            <form style="padding: 1rem 32rem;" method="post" action=".">
+                {% csrf_token %}
+                <div class="py-1">
+                    <label for="descricao">Recebimento: </label>
+                    <input style="width: 400px; height: 30px; border-radius:10px;" name="descricao" id="descricao" type="text" placeholder="Insira a descrição de seu recebimento">
+                </div>
+                <div class="py-1">
+                    <label for="valor">Valor: </label>
+                    <input style="width: 400px; height: 30px; border-radius:10px;" name="valor" id="valor" type="text" placeholder="Insira o valor">
+                </div>
+                <div>
+                    <input id="relatorio" type="hidden" placeholder="Insira o relatório" value="">
+                </div>
+                <div>
+                    <input id="usuario" type="hidden" placeholder="Insira o usuário" value="{{ request.user }}">
+                </div>
+                <button name="form1" type="submit" class="btn btn-outline-success mt-2" style="width: 200px;"> Confirmar</button>
+            </form>
+            <a href="{% url 'conta:saldoatual' %}">
+                <button type="submit" class="btn btn-success" style="width: 365px; margin: 3rem 32rem;">Após informar todos os recebimentos clique aqui para calcular seu saldo</button>
+            </a>
+
+            <div style="height:1px; background-color:black;"></div>
+            <h1 class="px-64 py-8" style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05; text-align: center;">LISTA DE RECEBIMENTOS</h1>
+
+            {% for key, value in lista_recebimentos.items %}
+
+            {% if key == request.user %}
+
+            {% for item in value %}
+            <div class="flex justify-start px-64">
+                <div class="m-8 my-2 p-1 rounded-lg" style="width: 300px; height:40px; background-color: white; ">
+                    <p>Descrição: <strong>{{ item.0 }}</strong></p>
+                </div>
+                <div class="m-8 my-2 p-1 rounded-lg" style="width: 150px; height:40px; background-color: white; ">
+                    <p></p>Valor: <strong>{{ item.1|floatformat:2|intcomma }} </strong></p>
+                </div>
+                <div class="m-8 my-1 p-1 rounded-lg">
+                    <form method="post" action=".">
+                        {% csrf_token %}
+                        <input name="indice" type="hidden" value="{{ forloop.counter }}" >
+                        <button name="form2" type="submit" class="btn btn-danger" style="height:40px; width: 150px;">Excluir</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,1 @@
+web: python manage.py migrate && gunicorn sempre_seguro.wsgi --log-file -

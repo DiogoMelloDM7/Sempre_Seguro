@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo %}
+Página não encontrada
+{% endblock %}
+
+{% block content %}
+<div class="bg-teal-100">
+    <div class="bg-teal-200 mx-32 "style="height:700px;">
+
+        <div>
+            <h1 class="py-32" style="text-align: center; font-size: 4rem;">Desculpe, infelizmente não conseguimos encontrar a página solicitada...</h1>
+            <a class="px-64 pt-20" style="font-size: 4rem; color:#6366f1 " href="{% url 'conta:homepage' %}">Clique aqui para voltar a página inicial</a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo %}
+Login
+{% endblock %}
+
+{% block content %}
+    <div class="bg-teal-100">
+        <div class="bg-teal-200 px-28 py-16 mx-64" style="height: 700px;">
+            <div class="bg-teal-200 px-28 py-16 mx-64">
+                <h1 class="pb-16" style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05;">PREENCHA OS CAMPOS ABAIXO COM SEU E-MAIL OU NOME DE USUARIO E SUA SENHA PARA REALIZAR O LOGIN</h1>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+
+                    <button class="btn btn-primary btn-lg bg-success mt-4" type="submit">Confirmar</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
