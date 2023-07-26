@@ -1,7 +1,7 @@
 {% load static %}
 
 <nav class="w-full flex justify-between px-3 bg-teal-900 ">
-    <div class="w-4/12 ">
+    <div class="w-3/12 ">
         <div class="container bg-teal-900 py-4 px-3 my-1 mx-24 ">
             <a href="/" class="text-white no-underline flex justify-start">
                 <img src="{% static 'images/sempreseguro.png' %}" style="width: 100px; height: 100px;" >
@@ -10,13 +10,19 @@
         </div>
     </div>
 
-    <div class="w-8/12 flex flex-nowrap justify-end mx-16">
+    <div class="w-9/12 flex flex-nowrap justify-end mx-16">
 
-
-            <a href="{% url 'conta:futurascompras' %}" class="text-white no-underline px-8">
-                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Compras Futuras</button>
+            <a href="{% url 'conta:despesas' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Calcular Despesas</button>
             </a>
 
+            <a href="{% url 'conta:contasavencer' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Contas a Vencer</button>
+            </a>
+
+            <a href="{% url 'conta:futurascompras' %}" class="text-white no-underline px-8">
+                <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Futuras Compras</button>
+            </a>
 
             <a href="{% url 'conta:relatorios' %}" class="text-white no-underline px-8">
                 <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Relatórios</button>
@@ -27,7 +33,6 @@
                 <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Editar Perfil</button>
             </a>
 
-
             <a href="{% url 'conta:logout' %}" class="text-white no-underline px-8">
                 <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Sair</button>
             </a>
@@ -35,7 +40,6 @@
             <a href="{% url 'conta:criarconta' %}" class="text-white no-underline px-8">
                 <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Criar Conta</button>
             </a>
-
 
             <a href="{% url 'conta:login' %}?next={{ request.path }}" class="text-white no-underline px-8">
                 <button class="container bg-teal-700 py-4 px-3 my-8 mx-8 div-color">Login</button>

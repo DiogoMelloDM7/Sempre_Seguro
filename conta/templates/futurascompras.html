@@ -30,16 +30,15 @@ Futuras Compras
                         {% else %}
                         <a href="#" style="font-size: 1.4rem; font-weight: 700;">
                             {% endif %}
-                            <p>{{ produto }}</p>
+                            <p>{{ produto}}</p>
                             <p>R$ {{ produto.valor }}</p>
                         </a>
 
-                        <div class="">
                         <button class="bg-red-600 hover:bg-red-300 text-white font-bold py-2 px-4 border border-red-900 rounded my-3" onclick="excluirItem('{{ produto.id }}')">Remover
                         </button>
-                        </div>
 
-                    </div>
+
+                </div>
                 {% endfor %}
                 {% else %}
                 <div>

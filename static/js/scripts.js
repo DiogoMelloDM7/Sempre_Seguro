@@ -43,7 +43,7 @@ function excluirRelatorio(relatorioId) {
             method: "DELETE",
             headers: {
                 "X-CSRFToken": csrftoken,
-                "Content-Type": "application/json", // Adicione o cabeçalho Content-Type
+
             },
         })
         .then((response) => {
@@ -51,6 +51,29 @@ function excluirRelatorio(relatorioId) {
                  window.location.href = '/relatorios/' // Atualiza a página após excluir o item
             } else {
                 alert("Ocorreu um erro ao excluir o relatório.");
+            }
+        })
+        .catch((error) => {
+            console.error("Erro na solicitação AJAX:", error);
+        });
+    }
+}
+
+function excluirContaFutura(contaId) {
+    if (confirm("Tem certeza que deseja excluir esta conta?")) {
+        const csrftoken = getCookie('csrftoken');
+        fetch(`/delete_contas_avencer/${contaId}/`, {
+            method: "DELETE",
+            headers: {
+                "X-CSRFToken": csrftoken,
+
+            },
+        })
+        .then((response) => {
+            if (response.ok) {
+                 location.reload();
+            } else {
+                alert("Ocorreu um erro ao excluir a conta.");
             }
         })
         .catch((error) => {
