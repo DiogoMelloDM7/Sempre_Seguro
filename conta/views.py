@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CriarContaForm, FuturasCompras, ContasAVencerem
 from django.http import JsonResponse
 from django.core.mail import send_mail
-from datetime import date, datetime
+from datetime import date
 
 
 def enviar_email_vencimento_contas():
