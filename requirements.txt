@@ -10,7 +10,7 @@ click-repl==0.3.0
 colorama==0.4.6
 crispy-bootstrap5==0.7
 dj-database-url==2.0.0
-Django==4.2.3
+Django
 django-apscheduler==0.6.2
 django-background-tasks==1.2.5
 django-compat==1.0.15
