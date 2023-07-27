@@ -4,47 +4,39 @@
 Relatorios
 {% endblock %}
 {% block content %}
-    <div class="bg-teal-100">
-        {% if request.user.relatorios.all %}
-        {% if request.user.relatorios.all|length < 5 %}
-        <div class="bg-teal-200 px-28 py-16 mx-64 flex justify-center flex-wrap" style="height: 700px;">
-        {% else %}
-        <div class="bg-teal-200 px-28 py-16 mx-64 flex justify-center flex-wrap">
-        {% endif %}
-
-            <h1 style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05;" class="px-16">Confira seus extratos anteriores, para acessar o extrato desejado basta apenas clicar sobre o mesmo</h1>
-
-            {% for relatorio in lista_relatorios %}
-            <a href="{% url 'conta:saldo' relatorio.id %}">
-                <div class="bg-gray-100 px-3 py-4 my-12 mx-32 rounded-lg div-color" style="width: 350px; height:130px;">
-                    <p style="font-size: 1.5rem; color:#4C2E00; font-height: 700; px-8; font-family: Consolas;">
-                        Veja como foi seu extrato referente à {{ relatorio }}...
-
-                    </p>
-
-                </div>
-            </a>
-            {% endfor %}
-
-
-        </div>
+ <div class="bg-teal-100">
+    {% if request.user.relatorios.all %}
+    {% if request.user.relatorios.all|length < 5 %}
+    <div class="bg-teal-200 px-6 py-10 mx-auto md:px-10 lg:px-20 xl:px-40 flex flex-wrap items-center justify-center container" style="height: 722px;" >
     {% else %}
-        <div class="bg-teal-200 px-28 py-16 mx-64 flex justify-center flex-wrap" style="height: 700px;">
-            <h1 style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05;" class="px-32">Pelo que parece você ainda não possui nenhum relatório :( <br><br>
-            Clique na opção abaixo para ser redirecionado para realizar seu primeiro relatório!!!
-            </h1>
-
-                <a href="{% url 'conta:despesas' %}" style="width: 700px;">
-                    <div class="my-16 bg-teal-500 div-color text-white px-32 py-8">
-                    <span style="font-size: 2.5rem; ">Calcular Despesas</span>
-                    <p style="font-size: 1.5rem;">Acesse esta página para calcular seus gastos e saber como está a sua situação</p>
-                    </div>
-                </a>
-
-
-        </div>
-
+    <div class="bg-teal-200 px-6 py-10 mx-auto md:px-10 lg:px-20 xl:px-40 flex flex-wrap items-center justify-center container">
     {% endif %}
 
+        <h1 class="text-2xl text-center md:text-left pt-16" style="font-size: 2rem; font-weight: 700; font-family: Consolas; color: #002B05;" >Confira seus extratos anteriores, para acessar o extrato desejado basta apenas clicar sobre o mesmo</h1>
+
+        {% for relatorio in lista_relatorios %}
+        <a href="{% url 'conta:saldo' relatorio.id %}">
+            <div class="bg-gray-100 px-3 py-4 my-8 mx-4 rounded-lg div-color" style="width: 350px; height:130px;">
+                <p class="text-lg font-semibold text-center" style="font-size: 1.5rem; color:#4C2E00; font-weight: 700; font-family: Consolas;">
+                    Veja como foi seu extrato referente à {{ relatorio }}...
+                </p>
+            </div>
+        </a>
+        {% endfor %}
     </div>
+    {% else %}
+    <div class="bg-teal-200 px-6 py-10 mx-auto md:px-10 lg:px-20 xl:px-40 flex flex-wrap items-center justify-center container" style="height: 722px;">
+        <h1 class="text-2xl font-semibold text-center md:text-left" style="font-size: 2rem; font-weight: 700; font-family: Consolas; color: #002B05;">Pelo que parece você ainda não possui nenhum relatório :( <br><br>
+        Clique na opção abaixo para ser redirecionado para realizar seu primeiro relatório!!!
+        </h1>
+
+            <a href="{% url 'conta:despesas' %}" class="w-6/12">
+                <div class="my-4 bg-teal-500 div-color text-white px-12 py-8">
+                <span class="text-2xl font-semibold">Calcular Despesas</span>
+                <p class="text-lg">Acesse esta página para calcular seus gastos e saber como está a sua situação</p>
+                </div>
+            </a>
+    </div>
+    {% endif %}
+</div>
 {% endblock %}

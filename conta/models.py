@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 
+
 def mes():
     from datetime import date
     data_atual = date.today()
@@ -54,5 +55,26 @@ class Relatorio(models.Model):
 
 
 class Usuario(AbstractUser):
-    data_criacao = models.DateTimeField(default=timezone.now)
+    telefone = models.CharField(max_length=30, default="+55 (11) 1234-5678")
 
+
+class ContasAVencer(models.Model):
+    usuario = models.ForeignKey("Usuario", related_name="contasavencer", on_delete=models.CASCADE)
+    descricao = models.CharField(max_length=150)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    data_vencimento = models.DateTimeField(default=timezone.now)
+
+
+    def __str__(self):
+        return self.descricao
+
+
+class ContasInformada(models.Model):
+    usuario = models.ForeignKey("Usuario", related_name="contasinformadas", on_delete=models.CASCADE)
+    descricao = models.CharField(max_length=150)
+    valor = models.DecimalField(max_digits=10, decimal_places=2)
+    data_vencimento = models.DateTimeField(default=timezone.now)
+
+
+    def __str__(self):
+        return self.descricao

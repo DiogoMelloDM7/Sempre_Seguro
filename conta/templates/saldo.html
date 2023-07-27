@@ -7,45 +7,45 @@ Saldo
 
 {% block content %}
     <div class="bg-teal-100">
-        <div class="bg-teal-200 px-32 py-16 mx-64">
-            <h1 class="px-32" style="font-size: 3rem; font-height: 700; color: #002B05; font-family: cursive;">
+        <div class="bg-teal-200 px-10 py-10 mx-auto md:px-20 lg:px-32 xl:px-40 container">
+            <h1 class="px-10 pb-6 text-3xl font-semibold" style="font-family: cursive; color: #002B05;">
                 Lista de gastos detalhados referente à {{ object.descricao }}
             </h1>
             {% for conta in object.contas.all %}
-                <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+                <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
                     <p style="font-size: 1.5rem; font-weight: 400; color:#001510;">Você gastou R$ {{conta.valor}} com {{ conta.descricao }}</p>
 
                 </div>
             {% endfor %}
             <div style="background-color:black; height:1px;margin:25px 0;"></div>
-            <h1 class="px-32" style="font-size: 3rem; font-height: 700; color: #002B05; font-family: cursive;">
+            <h1 class="px-10 pb-6 text-3xl font-semibold" style="font-family: cursive; color: #002B05;">
                  Lista de ganhos detalhados referente à {{ object.descricao }}
             </h1>
 
             {% for recebimento in object.recebimentos.all %}
-                <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+                <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
                     <p style="font-size: 1.5rem; font-weight: 400; color:#001510;">Você recebeu R$ {{recebimento.valor_pagamento}} referente (a/ao) {{ recebimento.descricao }}</p>
                 </div>
             {% endfor %}
             <div style="background-color:black; height:1px;margin:25px 0;"></div>
 
-            <h1 class="px-32" style="font-size: 3rem; font-height: 700; color: #002B05; font-family: cursive;">Saldo Final</h1>
-            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+            <h1 class="px-10 pb-6 text-3xl font-semibold" style="font-family: cursive; color: #002B05;">Saldo Final</h1>
+            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
                <p style="font-size: 1.5rem; font-weight: 400; color:#001510;"> Seus gastos no relatório do dia {{ object.descricao }} foram R$ {{ total_contas|floatformat:2|intcomma }}</p>
 
             </div>
-            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
 
                 <p style="font-size: 1.5rem; font-weight: 400; color:#001510;">Seus ganhos totais no relatório do dia {{ object.descricao }} foram R$ {{ total_recebimentos|floatformat:2|intcomma }}</p>
             </div>
 
             {% if saldo_final >= 0 %}
-            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+             <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
 
                 <p style="font-size: 1.5rem; font-weight: 400; color:#001510;">Seu saldo final do relatório do dia {{ object.descricao }} foi R$ {{ saldo_final|floatformat:2|intcomma }}</p>
             </div>
             {% else %}
-            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg" style="width: 800px;">
+            <div class="bg-gray-100 px-4 py-4 mx-8 my-4 rounded-lg w-full md:w-3/4 lg:w-9/12">
 
                 <p style="font-size: 1.5rem; font-weight: 400; color:#FF0D0D;">Seu saldo final do relatório do dia {{ object.descricao }} foi R$ {{ saldo_final|floatformat:2|intcomma }}</p>
             </div>

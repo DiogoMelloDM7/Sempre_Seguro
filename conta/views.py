@@ -1,9 +1,28 @@
 from django.views.generic import TemplateView, ListView, DetailView, FormView, UpdateView
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from .models import FuturasCompra, Relatorio, Usuario, Conta, Recebimento
+from .models import FuturasCompra, Relatorio, Usuario, Conta, Recebimento, ContasAVencer, ContasInformada
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import CriarContaForm, FuturasCompras
+from .forms import CriarContaForm, FuturasCompras, ContasAVencerem
 from django.http import JsonResponse
+from django.core.mail import send_mail
+from datetime import date
+
+
+def enviar_email_vencimento_contas():
+
+    hoje = date.today()
+    contas_a_vencer_hoje = ContasAVencer.objects.filter(data_vencimento=hoje)
+    for conta in contas_a_vencer_hoje:
+        conta_informada_existente = ContasInformada.objects.filter(usuario=conta.usuario, descricao=conta.descricao, valor=conta.valor, data_vencimento=conta.data_vencimento).exists()
+        if not conta_informada_existente:
+            email_usuario = conta.usuario.email
+
+            assunto = f"Conta a vencer: {conta.descricao}"
+            mensagem = f"Olá {conta.usuario.username},\n \nVocê possui uma conta pendente com o vencimento para hoje referente a {conta.descricao} no valor de {conta.valor}!!! \n \nAtenciosamente, \n \nSempre Seguro."
+
+            send_mail(assunto, mensagem, 'sempreseguro01@outlook.com', [email_usuario])
+            conta_informada = ContasInformada(usuario=conta.usuario, descricao=conta.descricao, valor=conta.valor, data_vencimento=conta.data_vencimento)
+            conta_informada.save()
 
 
 
@@ -15,8 +34,10 @@ class Homepage(TemplateView):
             try:
                 dicionarioItemDespesas(request)
                 dicionarioItemRecebimentos(request)
+                enviar_email_vencimento_contas()
                 return redirect('conta:homepagelogin')
             except:
+                enviar_email_vencimento_contas()
                 return redirect('conta:homepagelogin')
         else:
             return super().get(request, *args, **kwargs)
@@ -81,7 +102,7 @@ class Relatorios(LoginRequiredMixin, ListView):
 class EditarPerfil(LoginRequiredMixin, UpdateView):
     template_name = 'editarperfil.html'
     model = Usuario
-    fields = ['first_name', 'last_name', 'email', 'username']
+    fields = ['first_name', 'last_name', 'email', 'username', 'telefone']
 
     def get_success_url(self):
         return reverse('conta:homepagelogin')
@@ -204,6 +225,13 @@ def relatorio_delete(request, relatorio_id):
         return JsonResponse({"success": True})
     return JsonResponse({"success": False})
 
+def contasfuturas_delete(request, conta_id):
+    if request.method == "DELETE":
+        conta = get_object_or_404(ContasAVencer, id=conta_id)
+        conta.delete()
+        return JsonResponse({"success": True})
+    return JsonResponse({"success": False})
+
 def criar_relatorio(request):
     try:
         from .novos_context import saldo_despesas_recebimentos
@@ -243,6 +271,34 @@ def dicionarioItemRecebimentos(request):
 class Error(LoginRequiredMixin, TemplateView):
 
     template_name = 'erro.html'
+
+
+class ContasAVencerem(LoginRequiredMixin, FormView):
+    template_name = 'contasavencer.html'
+    form_class = ContasAVencerem
+
+    def get_success_url(self):
+        return reverse('conta:contasavencer')
+
+    def get(self, request):
+        form = self.form_class(user=request.user)
+        return render(request, self.template_name, {'form': form})
+
+
+    def post(self, request):
+        form = self.form_class(request.POST, user=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('conta:contasavencer')
+        return render(request, self.template_name, {'form': form})
+
+
+
+
+
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 from django.urls import path, reverse_lazy
-from .views import Homepage, CriarConta, FuturasCompras, HomepageLogin, Saldo, recebimentos, Relatorios, EditarPerfil, despesas, saldoAtual, excluir_item_futuras_compras, criar_relatorio, relatorio_delete, Error
+from .views import Homepage, CriarConta, FuturasCompras, HomepageLogin, Saldo, recebimentos, Relatorios, EditarPerfil, despesas, saldoAtual, excluir_item_futuras_compras, criar_relatorio, relatorio_delete, Error, ContasAVencerem, contasfuturas_delete
 from django.contrib.auth import views as auth_views
 
 app_name='conta'
@@ -21,7 +21,9 @@ urlpatterns = [
     path('excluiritem/<int:item_id>/', excluir_item_futuras_compras, name='excluir_item' ),
     path('criar_relatorio/', criar_relatorio, name='criar_relatorio'),
     path('excluir-relatorio/<int:relatorio_id>/', relatorio_delete, name='saldo_delete'),
-    path('error/', Error.as_view(), name='error')
+    path('error/', Error.as_view(), name='error'),
+    path('contasavencer/', ContasAVencerem.as_view(), name='contasavencer'),
+    path('delete_contas_avencer/<int:conta_id>/', contasfuturas_delete, name='conta_delete'),
 
 
 ]

@@ -1,7 +1,6 @@
-from django.db import models
 from .views import lista_geral_recebimentos, lista_geral_despesas
+from .models import Relatorio, ContasAVencer
 
-from .models import Relatorio, Conta, Recebimento
 
 def calcular_valor_total(request):
 
@@ -15,12 +14,6 @@ def calcular_valor_total(request):
 
             for recebimento in relatorio.recebimentos.all():
                 total_recebimentos += recebimento.valor_pagamento
-
-
-
-
-            #total_contas = relatorio.contas.aggregate(total=models.Sum('valor'))['total']
-            #total_recebimentos = relatorio.recebimentos.aggregate(total=models.Sum('valor_pagamento'))['total']
 
             if total_contas is None:
                 total_contas = 0
@@ -74,3 +67,12 @@ def lista_relatorios_usuario(request):
         lista_relatorios = []
         return {"lista_relatorios": lista_relatorios}
 
+
+def lista_contas_a_vencer(request):
+    try:
+        user = request.user
+        lista_contas_a_vencer = ContasAVencer.objects.filter(usuario=user).order_by("data_vencimento")
+        return {"lista_contas_a_vencer": lista_contas_a_vencer}
+    except:
+        lista_contas_a_vencer = []
+        return {"lista_contas_a_vencer": lista_contas_a_vencer}
