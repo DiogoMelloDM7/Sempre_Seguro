@@ -2,7 +2,7 @@ amqp==5.1.1
 APScheduler==3.10.1
 asgiref==3.7.2
 billiard==4.1.0
-celery==
+celery
 click==8.1.6
 click-didyoumean==0.3.0
 click-plugins==1.1.1
