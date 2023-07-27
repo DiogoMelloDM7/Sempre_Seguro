@@ -10,7 +10,6 @@ from datetime import date
 
 def enviar_email_vencimento_contas():
 
-    #try:
     hoje = date.today()
     contas_a_vencer_hoje = ContasAVencer.objects.filter(data_vencimento=hoje)
     for conta in contas_a_vencer_hoje:
@@ -21,11 +20,10 @@ def enviar_email_vencimento_contas():
             assunto = f"Conta a vencer: {conta.descricao}"
             mensagem = f"Olá {conta.usuario.username},\n \nVocê possui uma conta pendente com o vencimento para hoje referente a {conta.descricao} no valor de {conta.valor}!!! \n \nAtenciosamente, \n \nSempre Seguro."
 
-            send_mail(assunto, mensagem, 'grilodobone@hotmail.com', [email_usuario])
+            send_mail(assunto, mensagem, 'sempreseguro01@outlook.com', [email_usuario])
             conta_informada = ContasInformada(usuario=conta.usuario, descricao=conta.descricao, valor=conta.valor, data_vencimento=conta.data_vencimento)
             conta_informada.save()
-    #except:
-     #   return
+
 
 
 class Homepage(TemplateView):
@@ -283,11 +281,9 @@ class ContasAVencerem(LoginRequiredMixin, FormView):
         return reverse('conta:contasavencer')
 
     def get(self, request):
-        #try:
         form = self.form_class(user=request.user)
         return render(request, self.template_name, {'form': form})
-        #except:
-         #   return redirect('conta:error')
+
 
     def post(self, request):
         form = self.form_class(request.POST, user=request.user)

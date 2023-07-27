@@ -6,20 +6,17 @@ Criar conta
 {% endblock %}
 
 {% block content %}
-    <div class="bg-teal-100">
-        <div class="bg-teal-200 px-28 py-16 mx-64">
-            <div class="mx-64 px-16">
-                <h1 class="pb-16" style="font-size: 2rem; font=weight: 700; font-family: Consolas; color: #002B05;">PREENCHA OS CAMPOS ABAIXO PARA CONCLUIR SEU CADASTRO</h1>
-                <form method="POST">
+<div class="bg-teal-100">
+    <div class="bg-teal-200 px-10 py-10 mx-auto md:px-20 lg:px-28 xl:px-40 container">
+        <div class="mx-auto md:w-3/4 lg:w-2/3 xl:w-1/2 px-5 md:px-16">
+            <h1 class="pb-6 text-2xl font-semibold" style="font-family: Consolas; color: #002B05;">PREENCHA OS CAMPOS ABAIXO PARA CONCLUIR SEU CADASTRO</h1>
+            <form method="POST">
                 {% csrf_token %}
-
                 {{ form|crispy }}
                 <button class="btn btn-primary btn-lg bg-success" type="submit">Confirmar</button>
-
             </form>
-            </div>
-
         </div>
-
     </div>
+</div>
+
 {% endblock %}

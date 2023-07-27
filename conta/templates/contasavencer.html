@@ -7,12 +7,12 @@ Despesas
 
 {% block content %}
     <div class="bg-teal-100">
-        <div class="px-64 py-16 mx-64 bg-teal-200">
-            <h1 class="pb-16" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Registre aqui suas contas em aberto, notificaremos você no e-mail cadastrado em seus dados, quando estiver próximo ao vencimento!</h1>
-            <form method="post" style="width: 350px; align-items: center;">
+        <div class="px-64 py-16 mx-64 bg-teal-200 container">
+            <h1 class="pb-16 title" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Registre aqui suas contas em aberto, notificaremos você no e-mail cadastrado em seus dados, quando estiver próximo ao vencimento!</h1>
+            <form method="post" style="width: 350px; align-items: center;" class="form">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mt-8" style="width:300px;">Adicionar
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded mt-8 submit-btn" style="width:300px;">Adicionar
                 </button>
             </form>
 
@@ -20,30 +20,29 @@ Despesas
 
         </div>
 
-            <div style="height: 2px; background-color: black;" class="mx-64">
+            <div style="height: 2px; background-color: black;" class="mx-64 container-divisor">
         </div>
-        <div class="px-64 py-16 mx-64 bg-teal-200">
-            <h1 style="font-size:1.8rem; font-weight: 700; color:#2F4F4F;">Confira abaixo suas contas em aberto</h1>
-            <h3 style="font-size:1.2rem; font-weight: 500; color:#2F4F4F;">Assim que uma conta estiver perto do recebimento, você irá receber um e-mail lembrando do vencimento...</h3>
+        <div class="px-64 py-16 mx-64 bg-teal-200 container">
+            <h1 style="font-size:1.8rem; font-weight: 700; color:#2F4F4F;" class="section-title">Confira abaixo suas contas em aberto</h1>
+            <h3 style="font-size:1.2rem; font-weight: 500; color:#2F4F4F;" class="section-subtitle">Assim que uma conta estiver perto do recebimento, você irá receber um e-mail lembrando do vencimento...</h3>
                 {% if request.user.contasavencer.all|length > 0 %}
                 {% for conta in lista_contas_a_vencer %}
 
-                <div class="bg-gray-100 px-2 mt-16 flex justify-between rounded-lg" style="width: 900px;">
+                <div class="bg-gray-100 px-2 mt-16 flex justify-between rounded-lg account" style="width: 900px;">
 
-                    <p class="w-3/12 flex flex-nowrap" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">{{ conta }}</p>
-                    <p class="w-3/12 flex flex-nowrap" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">R$ {{ conta.valor }}</p>
-                    <p class="w-3/12 flex flex-nowrap" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">{{ conta.data_vencimento|date:"d/m/Y" }}</p>
+                    <p class="w-3/12 flex flex-nowrap account-info" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">{{ conta }}</p>
+                    <p class="w-3/12 flex flex-nowrap account-info" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">R$ {{ conta.valor }}</p>
+                    <p class="w-3/12 flex flex-nowrap account-info" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">{{ conta.data_vencimento|date:"d/m/Y" }}</p>
 
 
-                    <button class="bg-red-600 hover:bg-red-300 text-white font-bold py-2 px-4 border border-red-900 rounded my-3" onclick="excluirContaFutura('{{ conta.id }}')">Remover
+                    <button class="bg-red-600 hover:bg-red-300 text-white font-bold py-2 px-4 border border-red-900 rounded my-3 delete-btn" onclick="excluirContaFutura('{{ conta.id }}')">Remover
                     </button>
-
 
                 </div>
                 {% endfor %}
                 {% else %}
                 <div>
-                    <h1 class="pt-8" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Parece que você não possui nenhuma conta a vencer, preencha o formulário acima para cadastrar suas contas  pendentes...</h1>
+                    <h1 class="pt-8 no-accounts pb-3" style="font-size: 2rem; color:#2F4F4F; font-weight: 600;">Parece que você não possui nenhuma conta a vencer, preencha o formulário acima para cadastrar suas contas  pendentes...</h1>
                 </div>
                 {% endif %}
 

@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'conta.backends.EmailOrUsernameBackend',
 ]
-DEFAULT_FROM_EMAIL = "grilodobone@hotmail.com"
+DEFAULT_FROM_EMAIL = "sempreseguro01@outlook.com"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')

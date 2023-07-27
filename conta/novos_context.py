@@ -15,12 +15,6 @@ def calcular_valor_total(request):
             for recebimento in relatorio.recebimentos.all():
                 total_recebimentos += recebimento.valor_pagamento
 
-
-
-
-            #total_contas = relatorio.contas.aggregate(total=models.Sum('valor'))['total']
-            #total_recebimentos = relatorio.recebimentos.aggregate(total=models.Sum('valor_pagamento'))['total']
-
             if total_contas is None:
                 total_contas = 0
             if total_recebimentos is None:
@@ -80,5 +74,5 @@ def lista_contas_a_vencer(request):
         lista_contas_a_vencer = ContasAVencer.objects.filter(usuario=user).order_by("data_vencimento")
         return {"lista_contas_a_vencer": lista_contas_a_vencer}
     except:
-        lista_relatorios = []
+        lista_contas_a_vencer = []
         return {"lista_contas_a_vencer": lista_contas_a_vencer}
