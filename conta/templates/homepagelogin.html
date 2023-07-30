@@ -34,6 +34,16 @@ Homepage
                 <p>Acesse esta página para verificar seus débitos em aberto</p>
             </div>
 
+            <div class="my-16 bg-teal-500 w-6/12 div-color text-white px-3 py-3">
+                <a href="{% url 'conta:editarperfil' user.id %}" style="font-size:1.5rem;">Editar Perfil</a>
+                <p>Clique aqui para editar seus dados</p>
+            </div>
+
+            <div class="my-16 bg-teal-500 w-6/12 div-color text-white px-3 py-3">
+                <a href="{% url 'conta:logout' %}" style="font-size:1.5rem;">Sair </a>
+                <p>Clique aqui para sair da sua conta</p>
+            </div>
+
 
         </div>
 
