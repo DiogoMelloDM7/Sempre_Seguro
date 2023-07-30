@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,7 +25,7 @@ SECRET_KEY = 'django-insecure-30t0)95lyp@^3m%@-us09lc)#loo5yww#x@(0!05s*i+@g+a2t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['sempreseguro.onrender.com', 'www.sempreseguro.onrender.com']
+ALLOWED_HOSTS = ['sempreseguro.onrender.com', 'www.sempreseguro.onrender.com', "127.0.0.1"]
 
 
 # Application definition
@@ -83,8 +82,8 @@ WSGI_APPLICATION = 'sempre_seguro.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-'''DATABASES = {
+'''
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
