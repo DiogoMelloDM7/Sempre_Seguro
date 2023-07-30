@@ -89,29 +89,26 @@ body {
 }
 
 /* Media query para dispositivos móveis */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .form {
     max-width: 100%;
-    height: 100vh;
   }
   .submit-btn {
     max-width: 100%;
-    height: 100vh;
   }
   .container {
     padding: 8px;
-    height: 100vh;
   }
   .account {
     flex-direction: column;
     align-items: center;
-    height: 100vh;
   }
   .account-info {
     padding-top: 0;
     margin-bottom: 8px;
-    height: 100vh;
   }
+
 }
+
 
 
