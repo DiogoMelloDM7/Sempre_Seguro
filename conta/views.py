@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView, ListView, DetailView, FormView, UpdateView
+from django.views.generic import TemplateView, ListView, DetailView, FormView, UpdateView, View
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .models import FuturasCompra, Relatorio, Usuario, Conta, Recebimento, ContasAVencer, ContasInformada
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -268,9 +268,9 @@ def dicionarioItemRecebimentos(request):
     global lista_geral_recebimentos
     del lista_geral_recebimentos[request.user]
 
-class Error(LoginRequiredMixin, TemplateView):
 
-    template_name = 'erro.html'
+def handler404(request, exception):
+    return render(request, 'erro.html')
 
 
 class ContasAVencerem(LoginRequiredMixin, FormView):
