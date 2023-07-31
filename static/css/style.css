@@ -90,6 +90,13 @@ body {
 
 /* Media query para dispositivos móveis */
 @media screen and (max-width: 768px) {
+  html, body {
+  height: 100%;
+  }
+  main{
+  min-height: 100vh;
+  }
+
   .form {
     max-width: 100%;
   }
@@ -106,8 +113,35 @@ body {
   .account-info {
     padding-top: 0;
     margin-bottom: 8px;
+    font-size: 1.2rem;
   }
+  .div-color {
+  width: 100%;
+}
 
+.section-title {
+  font-size: 1.6rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+}
+
+.no-accounts {
+  font-size: 1.8rem;
+}
+
+.account {
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.delete-btn {
+  padding: 4px 8px;
+}
+#imagem-principal {
+  display: none; /* Oculta a imagem */
+}
 }
 
 

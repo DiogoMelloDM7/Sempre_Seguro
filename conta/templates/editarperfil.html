@@ -12,9 +12,9 @@ Editar Perfil
             <form method="POST">
                 {% csrf_token %}
                 {{ form|crispy }}
-                <button class="btn btn-primary btn-lg bg-success mt-4" type="submit">Confirmar</button>
+                <button class="btn btn-primary btn-lg bg-success mt-2" type="submit">Confirmar</button>
             </form>
-            <small class="block mt-2 text-sm"><a href="{% url 'conta:mudarsenha' %}">Quer mudar a senha?</a></small>
+            <small class="block mb-2 mt-2 text-sm"><a href="{% url 'conta:mudarsenha' %}">Quer mudar a senha?</a></small>
         </div>
     </div>
 </div>

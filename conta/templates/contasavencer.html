@@ -28,7 +28,7 @@ Contas a Vencer
                 {% if request.user.contasavencer.all|length > 0 %}
                 {% for conta in lista_contas_a_vencer %}
 
-                <div class="bg-gray-100 px-2 mt-16 flex justify-between rounded-lg account" style="width: 900px;">
+                <div class="bg-gray-100 px-2 mt-16 flex justify-between rounded-lg account w-9/12">
 
                     <p class="w-3/12 flex flex-nowrap account-info" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">{{ conta }}</p>
                     <p class="w-3/12 flex flex-nowrap account-info" style="font-size: 1.4rem; font-weight: 700; padding-top: 15px;">R$ {{ conta.valor }}</p>
