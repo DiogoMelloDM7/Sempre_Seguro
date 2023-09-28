@@ -96,6 +96,7 @@ DATABASES = {
 }
 import dj_database_url
 DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = 'postgresql://postgres:mAbYNI9WjM2OKL2lSpyx@containers-us-west-56.railway.app:7149/railway'
 
 if DATABASE_URL:
 
