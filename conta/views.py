@@ -34,10 +34,16 @@ class Homepage(TemplateView):
             try:
                 dicionarioItemDespesas(request)
                 dicionarioItemRecebimentos(request)
-                enviar_email_vencimento_contas()
+                try:
+                    enviar_email_vencimento_contas()
+                except:
+                    return redirect('conta:homepagelogin')
                 return redirect('conta:homepagelogin')
             except:
-                enviar_email_vencimento_contas()
+                try:
+                    enviar_email_vencimento_contas()
+                except:
+                    return redirect('conta:homepagelogin')
                 return redirect('conta:homepagelogin')
         else:
             return super().get(request, *args, **kwargs)
