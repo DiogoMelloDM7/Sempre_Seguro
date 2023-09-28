@@ -28,7 +28,7 @@ else:
     SECRET_KEY = 'django-insecure-30t0)95lyp@^3m%@-us09lc)#loo5yww#x@(0!05s*i+@g+a2t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['sempreseguro.onrender.com', "127.0.0.1", "sempreseguro-production.up.railway.app"]
 
