@@ -127,10 +127,10 @@ AUTH_PASSWORD_VALIDATORS = [
 AUTHENTICATION_BACKENDS = [
     'conta.backends.EmailOrUsernameBackend',
 ]
-DEFAULT_FROM_EMAIL = "sempreseguro01@outlook.com"
+DEFAULT_FROM_EMAIL = "grilodobone@hotmail.com"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST_USER = 'sempreseguro01@outlook.com'
-EMAIL_HOST_PASSWORD = 'diogo13579'
+EMAIL_HOST_USER = 'grilodobone@hotmail.com'
+EMAIL_HOST_PASSWORD = '24012002diogo'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.office365.com'
