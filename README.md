@@ -2,7 +2,7 @@
 
 # Sobre o Projeto
 
-Sempre Seguro é uma aplicação web, voltada para usuários que querem uma plataforma onde possam controlar suas despesas de maneira fácil e prática. Para acessar o site [clique aqui](https://sempreseguro.onrender.com/)!
+Sempre Seguro é uma aplicação web, voltada para usuários que querem uma plataforma onde possam controlar suas despesas de maneira fácil e prática. Para acessar o site [clique aqui](https://sempreseguro-production.up.railway.app/sempreseguro/)!
 
 ## Funcionalidades
 
