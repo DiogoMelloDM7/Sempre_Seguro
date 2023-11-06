@@ -25,6 +25,10 @@ OBS: Para utilizar dessas funcionalidades o usuário deverá estar logado a plat
 * Bootstrap 5
 * Tailwind CSS
 
+## Banco de Dados
+* PostgreSQL
+
+
 ## HomePage
 ![Homepage](https://github.com/DiogoMelloDM7/Sempre_Seguro/assets/136912625/f8320ead-c3cc-4995-be65-a612675e5a3f)
 
